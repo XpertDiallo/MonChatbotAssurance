@@ -31,12 +31,8 @@ def load_faq(file_path):
 
 # Prétraitement des phrases
 def preprocess(text):
-    # Tokenisation en phrases
-    sentences = sent_tokenize(text, language='french')
-    # Tokenisation en mots pour chaque phrase
-    words = [word_tokenize(sentence, language='french') for sentence in sentences]
-    # Aplatir la liste de listes
-    words = [word for sublist in words for word in sublist]
+    # Tokenisation en mots
+    words = word_tokenize(text, language='french')
     # Suppression des mots vides et de la ponctuation
     words = [word.lower() for word in words if word.lower() not in stopwords.words('french') and word not in string.punctuation]
     # Lemmatisation des mots
@@ -73,7 +69,7 @@ def main():
     # Bouton pour soumettre la question
     if st.button("Soumettre"):
         if user_query:
-            question, response = get_most_relevant_response(user_query, vectorizer, tfidf_matrix, questions, answers)
+            _, response = get_most_relevant_response(user_query, vectorizer, tfidf_matrix, questions, answers)
             st.write(f"**Question posée :** {user_query}")
             st.markdown(f'<div style="background-color: #FFECB3; padding: 10px; border-radius: 5px;">**Réponse :** {response}</div>', unsafe_allow_html=True)
 
