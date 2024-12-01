@@ -1,6 +1,6 @@
 import nltk
 import streamlit as st
-from nltk.tokenize import word_tokenize
+from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import string
@@ -9,13 +9,9 @@ from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 
 # Télécharger les ressources nécessaires
-nltk.download('punkt_tab')
+nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('wordnet')
-nltk.download('omw-1.4')
-
-# Charger le tokenizer pour le français
-tokenizer = nltk.data.load('tokenizers/punkt_tab/french/')
 
 # Chargement du fichier texte contenant les questions et réponses
 def load_faq(file_path):
@@ -36,7 +32,7 @@ def load_faq(file_path):
 # Prétraitement des phrases
 def preprocess(text):
     # Tokenisation en phrases
-    sentences = tokenizer.tokenize(text)
+    sentences = sent_tokenize(text, language='french')
     # Tokenisation en mots pour chaque phrase
     words = [word_tokenize(sentence, language='french') for sentence in sentences]
     # Aplatir la liste de listes
