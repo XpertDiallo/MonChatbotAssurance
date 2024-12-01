@@ -1,4 +1,5 @@
-nltk
-numpy
-pandas
 streamlit
+nltk
+scikit-learn
+numpy
+
