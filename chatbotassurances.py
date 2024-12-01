@@ -74,7 +74,7 @@ def main():
     if st.button("Soumettre"):
         if user_query:
             question, response = get_most_relevant_response(user_query, vectorizer, tfidf_matrix, questions, answers)
-            st.write(f"**Question posée :** {question}")
+            st.write(f"**Question posée :** {user_query}")
             st.markdown(f'<div style="background-color: #FFECB3; padding: 10px; border-radius: 5px;">**Réponse :** {response}</div>', unsafe_allow_html=True)
 
             # Demander la satisfaction de l'utilisateur
