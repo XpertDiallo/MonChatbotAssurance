@@ -1,0 +1,4 @@
+__pycache__/
+*.py[cod]
+.streamlit/secrets.toml
+data/code_cima_articles.json
